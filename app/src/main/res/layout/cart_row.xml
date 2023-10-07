@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Convert root layout-linear/any Layout in DataBindingLayout then Alt+Enter on that LinearLayout and select Convert to data binding Layout.-->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="cartItem"
+            type="com.sheetal.shoppingecommerceapp.models.CartItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/productImageView"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:padding="8dp"
+            app:srcCompat="@drawable/ic_launcher_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:productImage="@{cartItem.product.image}"/>
+
+        <TextView
+            android:id="@+id/productNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{cartItem.product.title}"
+            android:hint="TV"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            app:layout_constraintStart_toEndOf="@+id/productImageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Qty"
+            android:layout_marginTop="10dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            app:layout_constraintStart_toStartOf="@+id/productNameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/productNameTextView" />
+
+        <Spinner
+            android:id="@+id/quantitySpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="@+id/textView"
+            android:entries="@array/quantity_string_array"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:setSpinnerValue="@{cartItem.quantity}"/>
+
+        <ImageButton
+            android:id="@+id/deleteProductButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/baseline_delete_24"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/quantitySpinner"
+            app:layout_constraintStart_toEndOf="@+id/quantitySpinner"
+            app:layout_constraintTop_toTopOf="@+id/quantitySpinner" />
+
+        <TextView
+            android:id="@+id/productTotalPriceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="TotalPrice"
+            android:layout_marginTop="25dp"
+            android:text="@{String.valueOf(cartItem.product.price * cartItem.quantity)}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            app:layout_constraintBottom_toBottomOf="@+id/deleteProductButton"
+            app:layout_constraintStart_toEndOf="@+id/deleteProductButton"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--price is in double so use String here. price*quantity will give us total price-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

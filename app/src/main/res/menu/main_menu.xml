@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--    item id must same== to cartFragment id then it will go on cart fragment after clicking on cart icon-->
+    <item android:id="@+id/cartFragment"
+        android:title="Cart"
+        android:icon="@drawable/baseline_shopping_cart_24"
+        app:showAsAction="always"
+        app:actionLayout="@layout/cart_action_item"/>
+<!--    change = android:actionLayout="@layout/cart_action_item" From android: to app: otherwise it will give null error-->
+
+    <item android:id="@+id/logout"
+        android:title="Logout"/>
+</menu>

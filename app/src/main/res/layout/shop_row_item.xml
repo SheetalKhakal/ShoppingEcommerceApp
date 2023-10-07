@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Convert root layout-linear/any Layout in DataBindingLayout then Alt+Enter on that LinearLayout and select Convert to data binding Layout.-->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="product"
+            type="com.sheetal.shoppingecommerceapp.models.Product" />
+
+        <variable
+            name="shopInterface"
+            type="com.sheetal.shoppingecommerceapp.adapters.ShopListAdapter.ShopInterface" />
+
+    </data>
+<!-- Convert root layout-linear/any Layout in DataBindingLayout then Alt+Enter on that LinearLayout and select Convert to data binding Layout.-->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="@{()-> shopInterface.onItemClick(product)}" >
+
+        <ImageView
+            android:id="@+id/productImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:productImage="@{product.image}"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/productNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="TV"
+            android:text="@{product.title}"
+            android:layout_gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+        <TextView
+            android:id="@+id/priceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="$200"
+            android:text="@{String.valueOf(product.price) + ` $`}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
+
+
+        <Button
+            android:id="@+id/addToCartButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add to cart"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:layout_gravity="center"
+            android:enabled="true"
+            android:onClick="@{() -> shopInterface.addItem(product)}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+           />
+    </LinearLayout>
+</layout>
